@@ -8,7 +8,7 @@ Release:	%mkrel 1
 License:	GPL
 Group:		System/Internationalization
 Source:		http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
-Icon:		books-%LANG.xpm
+Source1:	books-%LANG.xpm
 URL:		http://ptm.linux.pl/
 BuildRequires:	man => 1.5m2
 Requires:	locales-%LANG, man => 1.5j-8mdk
