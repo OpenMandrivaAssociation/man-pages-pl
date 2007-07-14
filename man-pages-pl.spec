@@ -1,14 +1,14 @@
 %define LANG pl
-%define releasedate 26-01-2007
+%define releasedate 28-06-2007
 
 Summary:	Man pages in polish language
 Name:		man-pages-%LANG
-Version:	0.5
+Version:	0.6
 Release:	%mkrel 1
 License:	GPL
 Group:		System/Internationalization
 Source:		http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
-URL:		http://ptm.linux.pl/
+URL:		http://ptm.linux.pl
 BuildRequires:	man => 1.5m2
 Requires:	locales-%LANG, man => 1.5j-8mdk
 Requires(pre):	sed grep man
@@ -39,7 +39,6 @@ sh ./autogen.sh
 rm -rf %{buildroot}
 
 mkdir -p %{buildroot}%{_mandir}/%LANG/
-mkdir -p %{buildroot}/var/catman/%LANG/cat{1,2,3,4,5,6,7,8,9,n}
 
 for i in 1 2 3 4 5 6 7 8 9 n; do
 	cp -adpvrf man$i %{buildroot}%{_mandir}/%LANG/
@@ -70,17 +69,6 @@ mkdir -p  %{buildroot}/var/cache/man/%LANG
 # these are provided by vim7:
 #rm -f %{buildroot}%{_mandir}/%LANG/man1/{evim.,ex.,{,r}{view,vim}.,vimdiff,vimtutor}*
 
-%postun
-# 0 means deleting the package
-if [ "$1" = "0" ]; then
-   ## Force removing of /var/catman/%LANG, if there isn't any man page
-   ## directory /%_mandir/%LANG
-   if [ ! -d %_mandir/%LANG ] ; then
-       rm -rf /var/catman/%LANG
-   fi
-fi
-
-
 %clean
 rm -rf %{buildroot}
 
@@ -91,5 +79,4 @@ rm -rf %{buildroot}
 %dir /var/cache/man/%LANG
 %config(noreplace) /var/cache/man/%LANG/whatis
 %{_mandir}/%LANG/man*
-%attr(755,root,man)/var/catman/%LANG
 %config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%LANG.cron
