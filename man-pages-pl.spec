@@ -18,6 +18,7 @@ Conflicts:	rpm < 4.4.1-2mdk
 Conflicts:	vim-common < 7.0-2mdk
 Autoreqprov:	false
 BuildArch:	noarch
+Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 A collection of man pages for Linux in polish language.
