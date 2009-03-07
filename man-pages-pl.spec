@@ -4,7 +4,7 @@
 Summary:	Man pages in polish language
 Name:		man-pages-%LANG
 Version:	0.6
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPL
 Group:		System/Internationalization
 Source:		http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
