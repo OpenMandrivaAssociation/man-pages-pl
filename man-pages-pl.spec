@@ -66,13 +66,13 @@ chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%LANG.cron
 
 mkdir -p  %{buildroot}/var/cache/man/%LANG
 
-touch $RPM_BUILD_ROOT/var/cache/man/%LANG/whatis
+touch $RPM_BUILD_ROOT/var/cache/man/%LNG/whatis
 
 # these are provided by vim7:
 #rm -f %{buildroot}%{_mandir}/%LANG/man1/{evim.,ex.,{,r}{view,vim}.,vimdiff,vimtutor}*
 
 %post
-%create_ghostfile /var/cache/man/%LANG/whatis root root 644
+%create_ghostfile /var/cache/man/%LNG/whatis root root 644
 
 %clean
 rm -rf %{buildroot}
@@ -82,6 +82,6 @@ rm -rf %{buildroot}
 %doc FAQ ChangeLog readme.english
 %dir %{_mandir}/%LANG
 %dir /var/cache/man/%LANG
-%ghost %config(noreplace) /var/cache/man/%LANG/whatis
+%ghost %config(noreplace) /var/cache/man/%LNG/whatis
 %{_mandir}/%LANG/man*
 %config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%LANG.cron
