@@ -53,29 +53,13 @@ done
 # spechelper fails here!!!
 #find %{buildroot}/%_mandir -type f -exec bzip2 -9f {} \;
 
-LANG=%LNG DESTDIR=%{buildroot} %{_sbindir}/makewhatis %{buildroot}%{_mandir}/%LNG
-
-mkdir -p %{buildroot}%{_sysconfdir}/cron.weekly
-cat > %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron << EOF
-#!/bin/bash
-LANG=%LNG %{_sbindir}/makewhatis %{_mandir}/%LNG
-exit 0
-EOF
-
-chmod a+x %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
-
 mkdir -p  %{buildroot}/var/cache/man/%LNG
-
-touch %{buildroot}/var/cache/man/%LNG/whatis
 
 # these are provided by vim7:
 #rm -f %{buildroot}%{_mandir}/%LNG/man1/{evim.,ex.,{,r}{view,vim}.,vimdiff,vimtutor}*
 
 # provided by 'mc' package
 rm -f %{buildroot}%{_mandir}/%{LNG}/man1/mc.1*
-
-%post
-%create_ghostfile /var/cache/man/%LNG/whatis root root 644
 
 %clean
 rm -rf %{buildroot}
@@ -85,7 +69,4 @@ rm -rf %{buildroot}
 %doc FAQ ChangeLog readme.english
 %dir %{_mandir}/%LNG
 %dir /var/cache/man/%LNG
-%ghost %config(noreplace) /var/cache/man/%LNG/whatis
 %{_mandir}/%LNG/man*
-%{_mandir}/%LNG/whatis
-%config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
