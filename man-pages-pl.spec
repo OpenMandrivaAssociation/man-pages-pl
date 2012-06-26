@@ -2,23 +2,22 @@
 %define releasedate 28-06-2007
 
 Summary:	Man pages in polish language
-Name:		man-pages-%LNG
+Name:		man-pages-%{LNG}
 Version:	0.6
-Release:	%mkrel 9
+Release:	10
 License:	GPL
 Group:		System/Internationalization
-Source:		http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
+Source0:	http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
 URL:		http://ptm.linux.pl
 BuildRequires:	man => 1.5m2
-Requires:	locales-%LNG, man => 1.5j-8mdk
+Requires:	locales-%{LNG} man => 1.5j-8mdk
 Requires(pre):	sed grep man
-Obsoletes:	man-%LNG, manpages-%LNG
-Provides:	man-%LNG, manpages-%LNG
+Obsoletes:	man-%{LNG} manpages-%{LNG}
+Provides:	man-%{LNG} manpages-%{LNG}
 Conflicts:	rpm < 4.4.1-2mdk
 Conflicts:	vim-common < 7.0-2mdk
 Autoreqprov:	false
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 A collection of man pages for Linux in polish language.
@@ -36,12 +35,10 @@ sh ./autogen.sh
 %make
 
 %install
-rm -rf %{buildroot}
-
-mkdir -p %{buildroot}%{_mandir}/%LNG/
+mkdir -p %{buildroot}%{_mandir}/%{LNG}/
 
 for i in 1 2 3 4 5 6 7 8 9 n; do
-	cp -adpvrf man$i %{buildroot}%{_mandir}/%LNG/
+	cp -adpvrf man$i %{buildroot}%{_mandir}/%{LNG}/
 done
 
 # those files conflict whith rpm package
@@ -53,7 +50,7 @@ done
 # spechelper fails here!!!
 #find %{buildroot}/%_mandir -type f -exec bzip2 -9f {} \;
 
-mkdir -p  %{buildroot}/var/cache/man/%LNG
+mkdir -p  %{buildroot}/var/cache/man/%{LNG}
 
 # these are provided by vim7:
 #rm -f %{buildroot}%{_mandir}/%LNG/man1/{evim.,ex.,{,r}{view,vim}.,vimdiff,vimtutor}*
@@ -61,12 +58,9 @@ mkdir -p  %{buildroot}/var/cache/man/%LNG
 # provided by 'mc' package
 rm -f %{buildroot}%{_mandir}/%{LNG}/man1/mc.1*
 
-%clean
-rm -rf %{buildroot}
-
 %files
 %defattr(644,root,man,755)
 %doc FAQ ChangeLog readme.english
-%dir %{_mandir}/%LNG
-%dir /var/cache/man/%LNG
-%{_mandir}/%LNG/man*
+%dir %{_mandir}/%{LNG}
+%dir /var/cache/man/%{LNG}
+%{_mandir}/%{LNG}/man*
