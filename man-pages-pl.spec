@@ -11,7 +11,6 @@ Source0:	http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
 URL:		http://ptm.linux.pl
 BuildRequires:	man => 1.5m2
 Requires:	locales-%{LNG} man => 1.5j-8mdk
-Requires(pre):	sed grep man
 Obsoletes:	man-%{LNG} manpages-%{LNG}
 Provides:	man-%{LNG} manpages-%{LNG}
 Conflicts:	rpm < 4.4.1-2mdk
