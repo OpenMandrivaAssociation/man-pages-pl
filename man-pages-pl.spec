@@ -23,13 +23,12 @@ A collection of man pages for Linux in polish language.
 
 %prep
 %setup -qn pl_PL
+sh ./autogen.sh
 
 %build
 for i in 1 2 3 4 5 6 7 8 9 n; do
         rm -rf man$i/CVS
 done
-
-sh ./autogen.sh
 
 %make
 
