@@ -71,6 +71,9 @@ touch %{buildroot}/var/cache/man/%LNG/whatis
 # these are provided by vim7:
 #rm -f %{buildroot}%{_mandir}/%LNG/man1/{evim.,ex.,{,r}{view,vim}.,vimdiff,vimtutor}*
 
+# provided by 'mc' package
+rm -f %{buildroot}%{_mandir}/%{LNG}/man1/mc.1*
+
 %post
 %create_ghostfile /var/cache/man/%LNG/whatis root root 644
 
