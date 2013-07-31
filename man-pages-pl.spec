@@ -4,7 +4,7 @@
 Summary:	Man pages in polish language
 Name:		man-pages-%{LNG}
 Version:	0.6
-Release:	11
+Release:	12
 License:	GPLv2
 Group:		System/Internationalization
 Url:		http://ptm.linux.pl
@@ -37,6 +37,10 @@ mkdir -p %{buildroot}%{_mandir}/%{LNG}/
 for i in 1 2 3 4 5 6 7 8 9 n; do
 	cp -adpvrf man$i %{buildroot}%{_mandir}/%{LNG}/
 done
+
+# these files conflict with shadow-utils package
+rm %{buildroot}%{_mandir}/pl/man1/expiry.1*
+rm %{buildroot}%{_mandir}/pl/man1/newgrp.1*
 
 # those files conflict whith rpm package
 #rm %{buildroot}%{_mandir}/pl/man{1/gendiff.1,8/rpm{2cpio,,build,cache,deps,graph}.8}
