@@ -4,7 +4,7 @@
 Summary:	Man pages in polish language
 Name:		man-pages-%{LNG}
 Version:	0.6
-Release:	14
+Release:	15
 License:	GPLv2
 Group:		System/Internationalization
 Url:		http://ptm.linux.pl
@@ -41,6 +41,9 @@ done
 # these files conflict with shadow-utils package
 rm %{buildroot}%{_mandir}/pl/man1/expiry.1*
 rm %{buildroot}%{_mandir}/pl/man1/newgrp.1*
+
+# conflicts with mc
+rm %{buildroot}%{_mandir}/pl/man1/mc.1*
 
 # conficts with run-parts
 rm %{buildroot}%{_mandir}/pl/man8/run-parts.8*
