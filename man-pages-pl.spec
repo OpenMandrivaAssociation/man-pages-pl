@@ -4,7 +4,7 @@
 Summary:	Man pages in polish language
 Name:		man-pages-%{LNG}
 Version:	0.6
-Release:	21
+Release:	22
 License:	GPLv2
 Group:		System/Internationalization
 Url:		http://ptm.linux.pl
