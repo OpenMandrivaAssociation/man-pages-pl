@@ -84,6 +84,5 @@ touch %{buildroot}/var/cache/man/%{LNG}/whatis
 %ghost %config(noreplace) /var/cache/man/%{LNG}/whatis
 %{_mandir}/%{LNG}/man*
 %{_mandir}/%{LNG}/cat*
-%{_mandir}/%{LNG}/CACHEDIR.TAG*
 %{_mandir}/%{LNG}/index.db*
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%{LNG}.cron
