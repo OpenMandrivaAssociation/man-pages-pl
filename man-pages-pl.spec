@@ -4,7 +4,7 @@
 Summary:	Man pages in polish language
 Name:		man-pages-%{LNG}
 Version:	0.6
-Release:	23
+Release:	24
 License:	GPLv2
 Group:		System/Internationalization
 Url:		http://ptm.linux.pl
@@ -80,7 +80,6 @@ touch %{buildroot}/var/cache/man/%{LNG}/whatis
 
 %files
 %doc FAQ ChangeLog readme.english
-%dir %{_mandir}/%{LNG}
 %dir /var/cache/man/%{LNG}
 %ghost %config(noreplace) /var/cache/man/%{LNG}/whatis
 %{_mandir}/%{LNG}/man*
@@ -88,4 +87,3 @@ touch %{buildroot}/var/cache/man/%{LNG}/whatis
 %{_mandir}/%{LNG}/CACHEDIR.TAG*
 %{_mandir}/%{LNG}/index.db*
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%{LNG}.cron
-
