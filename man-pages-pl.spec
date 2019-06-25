@@ -3,7 +3,7 @@
 
 Summary:	Man pages in polish language
 Name:		man-pages-%{LNG}
-Version:	0.6
+Version:	0.24
 Release:	25
 License:	GPLv2
 Group:		System/Internationalization
