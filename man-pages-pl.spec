@@ -1,61 +1,37 @@
 %define LNG pl
-%define releasedate 28-06-2007
 
 Summary:	Man pages in polish language
 Name:		man-pages-%{LNG}
-Version:	0.24
-Release:	25
+# Previous (now dead) project was at 0.27
+# back in 2007, shipped until OMLx 4.1
+Epoch:		1
+Version:	0.7
+Release:	1
 License:	GPLv2
 Group:		System/Internationalization
-Url:		http://ptm.linux.pl
-Source0:	http:/ptm.linux.pl/man-PL%{releasedate}.tar.bz2
+Url:		http://sourceforge.net/projects/manpages-pl/
+Source0:	http://sourceforge.net/projects/manpages-pl/files/manpages-pl-%{version}.tar.bz2
 BuildArch:	noarch
 BuildRequires:	man
 Requires:	locales-%{LNG}
 Requires:	man
 Requires(pre):	sed grep man
-Autoreqprov:	false
 
 %description
 A collection of man pages for Linux in polish language.
 
 %prep
-%setup -qn pl_PL
+%autosetup -p1 -n manpages-%{LNG}-%{version}
 
 %build
-for i in 1 2 3 4 5 6 7 8 9 n; do
-        rm -rf man$i/CVS
-done
-
-sh ./autogen.sh
-
-%make
 
 %install
-mkdir -p %{buildroot}%{_mandir}/%{LNG}/
+%make_install INSTALL="install -p"
 
-for i in 1 2 3 4 5 6 7 8 9 n; do
-	cp -adpvrf man$i %{buildroot}%{_mandir}/%{LNG}/
-done
-
-# these files conflict with shadow-utils package
-rm %{buildroot}%{_mandir}/pl/man1/expiry.1*
-rm %{buildroot}%{_mandir}/pl/man1/newgrp.1*
-
-# conflicts with mc
-rm %{buildroot}%{_mandir}/pl/man1/mc.1*
-
-# conficts with run-parts
-rm %{buildroot}%{_mandir}/pl/man8/run-parts.8*
-
-# those files conflict whith rpm package
-#rm %{buildroot}%{_mandir}/pl/man{1/gendiff.1,8/rpm{2cpio,,build,cache,deps,graph}.8}
-
-# those files conflict whith dpkg package
-#rm %{buildroot}%{_mandir}/pl/man{1/dpkg-deb.1,8/dpkg{-split,}.8}
-
-# spechelper fails here!!!
-#find %{buildroot}/%_mandir -type f -exec bzip2 -9f {} \;
+# Provided by procps-ng package
+rm $RPM_BUILD_ROOT%{_mandir}/pl/man1/kill.1*
+rm $RPM_BUILD_ROOT%{_mandir}/pl/man1/uptime.1*
+rm $RPM_BUILD_ROOT%{_mandir}/pl/man8/pidof.8*
 
 LANG=%{LNG} DESTDIR=%{buildroot} %{_bindir}/mandb %{buildroot}%{_mandir}/%{LNG}
 
@@ -72,14 +48,10 @@ mkdir -p  %{buildroot}/var/cache/man/%{LNG}
 
 touch %{buildroot}/var/cache/man/%{LNG}/whatis
 
-# these are provided by vim7:
-#rm -f %{buildroot}%{_mandir}/%{LNG}/man1/{evim.,ex.,{,r}{view,vim}.,vimdiff,vimtutor}*
-
 %post
 %create_ghostfile /var/cache/man/%{LNG}/whatis root root 644
 
 %files
-%doc FAQ ChangeLog readme.english
 %dir /var/cache/man/%{LNG}
 %ghost %config(noreplace) /var/cache/man/%{LNG}/whatis
 %{_mandir}/%{LNG}/man*
