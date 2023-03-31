@@ -6,7 +6,7 @@ Name:		man-pages-%{LNG}
 # back in 2007, shipped until OMLx 4.1
 Epoch:		1
 Version:	0.7
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		System/Internationalization
 Url:		http://sourceforge.net/projects/manpages-pl/
