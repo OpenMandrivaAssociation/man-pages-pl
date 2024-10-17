@@ -9,7 +9,7 @@ Version:	0.7
 Release:	2
 License:	GPLv2
 Group:		System/Internationalization
-Url:		http://sourceforge.net/projects/manpages-pl/
+Url:		https://sourceforge.net/projects/manpages-pl/
 Source0:	http://sourceforge.net/projects/manpages-pl/files/manpages-pl-%{version}.tar.bz2
 BuildArch:	noarch
 BuildRequires:	man
